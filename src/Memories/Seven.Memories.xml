@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Seven.Memories</name>
+    </assembly>
+    <members>
+        <member name="T:Seven.Memories.RentableMemories">
+            <summary>
+            rentable memories
+            </summary>
+        </member>
+        <member name="T:Seven.Memories.RentedMemory">
+            <summary>
+            one memory owns some bytes
+            </summary>
+        </member>
+        <member name="P:Seven.Memories.RentedMemory.Memory">
+            <summary>
+            rented bytes
+            </summary>
+        </member>
+        <member name="M:Seven.Memories.RentedMemory.Dispose">
+            <summary>
+            override <see cref="M:System.IDisposable.Dispose"/>. return the rented memory
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Seven.Memories</RootNamespace>
+    <AssemblyName>Seven.Memories</AssemblyName>
+    <Version>0.0.0.1-alpha</Version>
+    <Authors>Seven Lv</Authors>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Seven.Memories.xml</DocumentationFile>
+  </PropertyGroup>
+
+</Project>
