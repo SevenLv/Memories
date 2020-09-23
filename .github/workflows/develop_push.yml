@@ -20,6 +20,7 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build src/Memories.sln --configuration Release --no-restore
+      working-directory: src
+      run: dotnet --configuration Release --no-restore
     - name: Test
-      run: dotnet test src/Memories.sln --no-restore --verbosity normal
+      run: dotnet --no-restore --verbosity normal
