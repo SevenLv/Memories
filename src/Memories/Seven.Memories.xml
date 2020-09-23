@@ -4,9 +4,9 @@
         <name>Seven.Memories</name>
     </assembly>
     <members>
-        <member name="T:Seven.Memories.Memories">
+        <member name="T:Seven.Memories.RentableMemories">
             <summary>
-            some bytes
+            rentable memories
             </summary>
         </member>
         <member name="T:Seven.Memories.RentedMemory">

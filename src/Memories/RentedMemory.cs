@@ -8,7 +8,7 @@ namespace Seven.Memories
     public struct RentedMemory : IDisposable
     {
         #region fields
-        private readonly Memories memories;
+        private readonly RentableMemories memories;
 
         private readonly object disposationLocker;
         private bool disposing;
@@ -16,7 +16,7 @@ namespace Seven.Memories
         #endregion fields
 
         #region constructors
-        internal RentedMemory(Memories memories, Range rentedRange, Memory<byte> memory)
+        internal RentedMemory(RentableMemories memories, Range rentedRange, Memory<byte> memory)
         {
             disposationLocker = new object();
             disposing = false;

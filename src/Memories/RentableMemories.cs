@@ -6,9 +6,9 @@ using System.Linq;
 namespace Seven.Memories
 {
     /// <summary>
-    /// some bytes
+    /// rentable memories
     /// </summary>
-    internal sealed class Memories
+    internal sealed class RentableMemories
     {
         #region fields
         private readonly Memory<byte> bytes;
@@ -19,7 +19,7 @@ namespace Seven.Memories
         #endregion fields
 
         #region constructors
-        internal Memories(int length)
+        internal RentableMemories(int length)
         {
             if (length <= 0)
             {

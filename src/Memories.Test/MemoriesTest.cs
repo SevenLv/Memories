@@ -13,7 +13,7 @@ namespace Seven.Memories
             const int MEMORIES_LENGTH = 1024;
             const int MAX_RENT_LENGTH = 128;
 
-            var memories = new Memories(MEMORIES_LENGTH);
+            var memories = new RentableMemories(MEMORIES_LENGTH);
 
             var random = new Random(DateTime.Now.Millisecond);
 
