@@ -40,10 +40,22 @@ namespace Seven.Memories
 
                 for (int j = 0; j < 10; j++)
                 {
-                    var size = random.Next(1, MAX_RENT_LENGTH);
+                    byte size = (byte) random.Next(1, MAX_RENT_LENGTH);
 
                     if (memories.TryRent(size, out var rented))
                     {
+                        Assert.AreEqual(size, rented.Memory.Length);
+                        for (byte k = 0; k < size; k++)
+                        {
+                            rented.Memory.Span[k] = k;
+                        }
+
+                        var realMemory = memories.Get(rented.RentedRange);
+                        for (byte k = 0; k < size; k++)
+                        {
+                            Assert.AreEqual(k, realMemory.Span[k]);
+                        }
+
                         if (random.Next() > 0.5)
                         {
                             savedMemories.Add(rented);
@@ -73,9 +85,13 @@ namespace Seven.Memories
                         disposedMemory.Dispose();
                     }
                 }
-            }
 
-            //GC.Collect();
+                var fullBytes = memories.Get(new Range(0, MEMORIES_LENGTH));
+                for (int i = 0; i < MEMORIES_LENGTH; i++)
+                {
+                    Assert.AreEqual(0, fullBytes.Span[i]);
+                }
+            }
         }
     }
 }

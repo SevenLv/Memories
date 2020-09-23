@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
 
@@ -40,7 +38,7 @@ namespace Seven.Memories
             {
                 if (rentedRanges.Count <= 0)
                 {
-                    var rentedRange = Rent(0, length - 1, out rentedMemory);
+                    var rentedRange = Rent(0, length, out rentedMemory);
                     rentedRanges.AddLast(rentedRange);
                     return true;
                 }
@@ -53,9 +51,9 @@ namespace Seven.Memories
                     if (next == null)
                     {
                         // last rented range
-                        if (fullRange.End.Value - currentNode.Value.End.Value >= length)
+                        if (fullRange.End.Value - currentNode.Value.End.Value - 1 >= length)
                         {
-                            var rentedRange = Rent(currentNode.Value.End.Value + 1, currentNode.Value.End.Value + length, out rentedMemory);
+                            var rentedRange = Rent(currentNode.Value.End.Value + 1, currentNode.Value.End.Value + length + 1, out rentedMemory);
                             rentedRanges.AddLast(rentedRange);
                             return true;
                         }
@@ -77,7 +75,7 @@ namespace Seven.Memories
                         var freeLength = currentNode.Value.Start.Value - previous.Value.End.Value - 1;
                         if (freeLength >= length)
                         {
-                            var rentedRange = Rent(previous.Value.End.Value + 1, previous.Value.End.Value + length, out rentedMemory);
+                            var rentedRange = Rent(previous.Value.End.Value + 1, previous.Value.End.Value + length + 1, out rentedMemory);
                             rentedRanges.AddBefore(currentNode, rentedRange);
                             return true;
                         }
@@ -114,6 +112,8 @@ namespace Seven.Memories
                 rentedRanges.Remove(memory.RentedRange);
             }
         }
+
+        internal ReadOnlyMemory<byte> Get(Range range) => bytes[range];
         #endregion methods
     }
 }
