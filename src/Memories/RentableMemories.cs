@@ -23,7 +23,7 @@ namespace Seven.Memories
         {
             if (length <= 0)
             {
-                throw new ArgumentOutOfRangeException(nameof(length), length, "length must larger than zero");
+                throw new ArgumentOutOfRangeException(nameof(length), length, "length must be larger than zero");
             }
 
             bytes = new byte[length];
@@ -40,21 +40,33 @@ namespace Seven.Memories
                 {
                     var rentedRange = Rent(0, length, out rentedMemory);
                     rentedRanges.AddLast(rentedRange);
+                    if (rentedMemory.Memory.Length != length)
+                    {
+
+                    }
                     return true;
                 }
 
                 //int lastOffset = 0;
                 var currentNode = rentedRanges.First;
+
                 while (currentNode != null)
                 {
+                    var currentStart = currentNode.Value.Start.Value;
+                    var currentEnd = currentNode.Value.End.Value;
+
                     var next = currentNode.Next;
                     if (next == null)
                     {
                         // last rented range
-                        if (fullRange.End.Value - currentNode.Value.End.Value - 1 >= length)
+                        if (fullRange.End.Value - currentEnd - 1 >= length)
                         {
-                            var rentedRange = Rent(currentNode.Value.End.Value + 1, currentNode.Value.End.Value + length + 1, out rentedMemory);
+                            var rentedRange = Rent(currentEnd + 1, currentEnd + length + 1, out rentedMemory);
                             rentedRanges.AddLast(rentedRange);
+                            if (rentedMemory.Memory.Length != length)
+                            {
+
+                            }
                             return true;
                         }
                     }
@@ -63,20 +75,29 @@ namespace Seven.Memories
                     if (previous == null)
                     {
                         // first rented range
-                        if (currentNode.Value.Start.Value >= length)
+                        if (currentStart >= length)
                         {
-                            var rentedRange = Rent(0, length - 1, out rentedMemory);
+                            var rentedRange = Rent(0, length, out rentedMemory);
                             rentedRanges.AddBefore(currentNode, rentedRange);
+                            if (rentedMemory.Memory.Length != length)
+                            {
+
+                            }
                             return true;
                         }
                     }
                     else
                     {
-                        var freeLength = currentNode.Value.Start.Value - previous.Value.End.Value - 1;
+                        var previousEnd = previous.Value.End.Value;
+                        var freeLength = currentStart - previousEnd - 1;
                         if (freeLength >= length)
                         {
-                            var rentedRange = Rent(previous.Value.End.Value + 1, previous.Value.End.Value + length + 1, out rentedMemory);
+                            var rentedRange = Rent(previousEnd + 1, previousEnd + length + 1, out rentedMemory);
                             rentedRanges.AddBefore(currentNode, rentedRange);
+                            if (rentedMemory.Memory.Length != length)
+                            {
+
+                            }
                             return true;
                         }
                     }

@@ -4,6 +4,52 @@
         <name>Seven.Memories</name>
     </assembly>
     <members>
+        <member name="T:Seven.Memories.MemoryPool">
+            <summary>
+            memory pool
+            </summary>
+        </member>
+        <member name="M:Seven.Memories.MemoryPool.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            initialize a new <see cref="T:Seven.Memories.MemoryPool"/> instance.
+            </summary>
+            <param name="initialBlockCount">the initial count of blocks. each block maintains some bytes, and the length of the bytes is defined by <paramref name="blockSize"/></param>
+            <param name="maxBlockCount"></param>
+            <param name="blockSize">the length of each block</param>
+        </member>
+        <member name="P:Seven.Memories.MemoryPool.InitialBlockCount">
+            <summary>
+            initial block count
+            </summary>
+        </member>
+        <member name="P:Seven.Memories.MemoryPool.BlockCount">
+            <summary>
+            current block count
+            </summary>
+        </member>
+        <member name="P:Seven.Memories.MemoryPool.MaxBlockCount">
+            <summary>
+            max block count
+            </summary>
+        </member>
+        <member name="P:Seven.Memories.MemoryPool.BlockSize">
+            <summary>
+            the length of each block
+            </summary>
+        </member>
+        <member name="M:Seven.Memories.MemoryPool.TryRent(System.Int32,Seven.Memories.RentedMemory@)">
+            <summary>
+            try to rent some memory
+            </summary>
+            <param name="length">the length of memory</param>
+            <param name="rentedMemory">rented memory</param>
+            <returns>if false, rent operation is failed</returns>
+        </member>
+        <member name="M:Seven.Memories.MemoryPool.Dispose">
+            <summary>
+            override <see cref="M:System.IDisposable.Dispose"/>
+            </summary>
+        </member>
         <member name="T:Seven.Memories.RentableMemories">
             <summary>
             rentable memories
