@@ -5,7 +5,7 @@ namespace Seven.Memories
     /// <summary>
     /// one memory owns some bytes
     /// </summary>
-    public struct RentedMemory : IDisposable
+    public class RentedMemory : IDisposable
     {
         #region fields
         private readonly RentableMemories memories;
