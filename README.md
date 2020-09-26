@@ -1,6 +1,16 @@
 # Memories
 
 # Benchmark
+``` ini
+
+BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18363.1082 (1909/November2018Update/19H2)
+Intel Core i5-9400F CPU 2.90GHz (Coffee Lake), 1 CPU, 6 logical and 6 physical cores
+.NET Core SDK=3.1.402
+  [Host]     : .NET Core 3.1.8 (CoreCLR 4.700.20.41105, CoreFX 4.700.20.41903), X64 RyuJIT
+  CoreRt 3.1 : .NET 5.0.29325.02 @BuiltBy: dlab14-DDVSOWINAGE075 @Branch: master @Commit: 64389dad34695712b2520fba2b04713c7c220d89, X64 AOT
+
+Job=CoreRt 3.1  Runtime=CoreRt 3.1  
+
 ```
 |     Method | Count |  Size |     Mean |   Error |   StdDev |   Median | Rank |
 |----------- |------ |------ |---------:|--------:|---------:|---------:|-----:|
