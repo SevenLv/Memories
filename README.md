@@ -1,7 +1,10 @@
 # Memories
 
-# Benchmark
-## Initialize And Dispose
+## Nuget Package
+[Latest Version](https://www.nuget.org/packages/Seven.Memories/)
+
+## Benchmark
+### Initialize And Dispose
 ``` ini
 
 BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18363.1082 (1909/November2018Update/19H2)
@@ -35,7 +38,7 @@ Job=CoreRt 3.1  Runtime=CoreRt 3.1
 | **100000** |  **2048** |   **317.1 ms** |  **6.24 ms** | **12.60 ms** |   **316.9 ms** |
 | **100000** | **10240** |   **667.2 ms** | **13.13 ms** | **11.64 ms** |   **664.9 ms** |
 | **100000** | **20480** | **1,184.9 ms** | **22.58 ms** | **35.15 ms** | **1,178.2 ms** |
-## Random Rent And Return 1000
+### Random Rent And Return 1000
 ``` ini
 
 BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18363.1082 (1909/November2018Update/19H2)
