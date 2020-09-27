@@ -1,5 +1,7 @@
 # Memories
 
+A dotNet Memory Pool
+
 ## Nuget Package
 [Latest Version](https://www.nuget.org/packages/Seven.Memories/)
 
