@@ -15,4 +15,8 @@
     <DocumentationFile>Seven.Memories.xml</DocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Seven.Memories.xml</DocumentationFile>
+  </PropertyGroup>
+
 </Project>
