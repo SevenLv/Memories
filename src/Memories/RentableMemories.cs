@@ -40,10 +40,6 @@ namespace Seven.Memories
                 {
                     var rentedRange = Rent(0, length, out rentedMemory);
                     rentedRanges.AddLast(rentedRange);
-                    if (rentedMemory.Memory.Length != length)
-                    {
-
-                    }
                     return true;
                 }
 
@@ -63,10 +59,6 @@ namespace Seven.Memories
                         {
                             var rentedRange = Rent(currentEnd + 1, currentEnd + length + 1, out rentedMemory);
                             rentedRanges.AddLast(rentedRange);
-                            if (rentedMemory.Memory.Length != length)
-                            {
-
-                            }
                             return true;
                         }
                     }
@@ -79,10 +71,6 @@ namespace Seven.Memories
                         {
                             var rentedRange = Rent(0, length, out rentedMemory);
                             rentedRanges.AddBefore(currentNode, rentedRange);
-                            if (rentedMemory.Memory.Length != length)
-                            {
-
-                            }
                             return true;
                         }
                     }
@@ -94,10 +82,6 @@ namespace Seven.Memories
                         {
                             var rentedRange = Rent(previousEnd + 1, previousEnd + length + 1, out rentedMemory);
                             rentedRanges.AddBefore(currentNode, rentedRange);
-                            if (rentedMemory.Memory.Length != length)
-                            {
-
-                            }
                             return true;
                         }
                     }
