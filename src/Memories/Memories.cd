@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Seven.Memories.MemoryPool">
+    <Position X="1.5" Y="6.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>gAIAAAAAACAAgAACIAAAAAAAAEBBIAAACEgAACBAAAA=</HashCode>
+      <FileName>MemoryPool.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="pool" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Seven.Memories.DefaultMemoryPool">
+    <Position X="1.5" Y="12" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DefaultMemoryPool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Seven.Memories.RentableMemories">
+    <Position X="1.5" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAgABAAAAAAAAAAAAAAAgAAAAAEAAAAAQ=</HashCode>
+      <FileName>RentableMemories.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="indexer" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Seven.Memories.RentableMemoriesIndexer">
+    <Position X="4.75" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>RentableMemoriesIndexer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Seven.Memories.DefaultRentableMemories">
+    <Position X="1.5" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DefaultRentableMemories.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Seven.Memories.DefaultRentableMemoriesIndexer">
+    <Position X="4.5" Y="3.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>gAAACAAAAAAAAAAAAAAAAAAAAABAAAABAEAAAAAAAAA=</HashCode>
+      <FileName>DefaultRentableMemoriesIndexer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

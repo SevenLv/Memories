@@ -8,7 +8,7 @@ namespace Seven.Memories
     /// <summary>
     /// memory pool
     /// </summary>
-    public sealed class MemoryPool : IDisposable
+    public abstract class MemoryPool : IDisposable
     {
         #region fields
         private readonly ManualResetEvent rentableResetEvent = new ManualResetEvent(true);
@@ -31,7 +31,7 @@ namespace Seven.Memories
         /// <param name="initialBlockCount">the initial count of blocks. each block maintains some bytes, and the length of the bytes is defined by <paramref name="blockSize"/></param>
         /// <param name="maxBlockCount"></param>
         /// <param name="blockSize">the length of each block</param>
-        public MemoryPool(int initialBlockCount, int maxBlockCount, int blockSize)
+        protected MemoryPool(int initialBlockCount, int maxBlockCount, int blockSize)
         {
             if (initialBlockCount <= 0)
             {
@@ -55,7 +55,7 @@ namespace Seven.Memories
 
             for (int i = 0; i < initialBlockCount; i++)
             {
-                pool.Add(new RentableMemories(blockSize));
+                pool.Add(CreateRentableMemories(blockSize));
             }
 
             InitialBlockCount = initialBlockCount;
@@ -89,6 +89,13 @@ namespace Seven.Memories
         #endregion properties
 
         #region methods
+        /// <summary>
+        /// create rentable memories instance
+        /// </summary>
+        /// <param name="blockSize">the length of memories</param>
+        /// <returns>rentable memories instance</returns>
+        protected abstract RentableMemories CreateRentableMemories(int blockSize);
+
         /// <summary>
         /// try to rent some memory
         /// </summary>
@@ -152,7 +159,7 @@ namespace Seven.Memories
 
                 try
                 {
-                    pool.Add(new RentableMemories(BlockSize));
+                    pool.Add(CreateRentableMemories(BlockSize));
                 }
                 finally
                 {

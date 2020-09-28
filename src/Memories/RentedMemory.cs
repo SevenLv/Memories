@@ -8,7 +8,7 @@ namespace Seven.Memories
     public class RentedMemory : IDisposable
     {
         #region fields
-        private readonly RentableMemories memories;
+        private readonly IRentableMemories memories;
 
         private readonly object disposationLocker;
         private bool disposing;
@@ -16,7 +16,16 @@ namespace Seven.Memories
         #endregion fields
 
         #region constructors
-        internal RentedMemory(RentableMemories memories, Range rentedRange, Memory<byte> memory)
+        /// <summary>
+        /// initialize a new <see cref="RentedMemory"/> instance
+        /// </summary>
+        /// <param name="memories">rentable memories</param>
+        /// <param name="rentedRange">rented range</param>
+        /// <param name="memory">rented memory</param>
+        public RentedMemory(
+            IRentableMemories memories,
+            Range rentedRange,
+            Memory<byte> memory)
         {
             disposationLocker = new object();
             disposing = false;
@@ -29,7 +38,10 @@ namespace Seven.Memories
         #endregion constructors
 
         #region properties
-        internal Range RentedRange { get; }
+        /// <summary>
+        /// rented range
+        /// </summary>
+        public Range RentedRange { get; }
 
         /// <summary>
         /// rented bytes

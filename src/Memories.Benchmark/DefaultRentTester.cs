@@ -7,7 +7,7 @@ namespace Seven.Memories.Benchmark
 {
     [SimpleJob(RuntimeMoniker.CoreRt31)]
     [MarkdownExporterAttribute.GitHub]
-    public class RentTester
+    public class DefaultRentTester
     {
         #region consts
         private const int RENT_COUNT = 1000;
@@ -15,7 +15,7 @@ namespace Seven.Memories.Benchmark
 
         #region fields
         private readonly Random random = new Random(DateTime.Now.Millisecond);
-        private MemoryPool pool;
+        private DefaultMemoryPool pool;
         #endregion fields
 
         #region properties
@@ -23,7 +23,7 @@ namespace Seven.Memories.Benchmark
         public int Count { get; set; }
 
         [Params(20000)]
-        public int MaxCount { get; set; } 
+        public int MaxCount { get; set; }
 
         [Params(1024, 2048, 10240, 20480)]
         public int Size { get; set; }
@@ -36,7 +36,7 @@ namespace Seven.Memories.Benchmark
         #region methods
         [GlobalSetup]
         public void Initialize() =>
-            pool = new MemoryPool(Count, MaxCount, Size);
+            pool = new DefaultMemoryPool(Count, MaxCount, Size);
 
         [Benchmark]
         public void RandomRentAndReturn1000()
@@ -62,7 +62,7 @@ namespace Seven.Memories.Benchmark
         }
 
         [GlobalCleanup]
-        public void Dispose() => 
+        public void Dispose() =>
             pool.Dispose();
         #endregion methods
     }
