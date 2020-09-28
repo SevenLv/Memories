@@ -4,6 +4,76 @@
         <name>Seven.Memories</name>
     </assembly>
     <members>
+        <member name="T:Seven.Memories.DefaultMemoryPool">
+            <summary>
+            default memory pool
+            </summary>
+        </member>
+        <member name="M:Seven.Memories.DefaultMemoryPool.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            initialize a new <see cref="T:Seven.Memories.DefaultMemoryPool"/> instance.
+            </summary>
+            <param name="initialBlockCount">the initial count of blocks. each block maintains some bytes, and the length of the bytes is defined by <paramref name="blockSize"/></param>
+            <param name="maxBlockCount"></param>
+            <param name="blockSize">the length of each block</param>
+        </member>
+        <member name="M:Seven.Memories.DefaultMemoryPool.CreateRentableMemories(System.Int32)">
+            <summary>
+            create rentable memories instance
+            </summary>
+            <param name="blockSize">the length of memories</param>
+            <returns>rentable memories instance</returns>
+        </member>
+        <member name="T:Seven.Memories.DefaultRentableMemories">
+            <summary>
+            rentalbe memories with default indexer
+            </summary>
+        </member>
+        <member name="M:Seven.Memories.DefaultRentableMemories.CreateIndexer(System.Int32)">
+            <summary>
+            create rentable memories indexer instance
+            </summary>
+            <param name="length">the length of memories</param>
+            <returns>rentable memories indexer instance</returns>
+        </member>
+        <member name="T:Seven.Memories.DefaultRentableMemoriesIndexer">
+            <summary>
+            default rentable memories indexer
+            </summary>
+        </member>
+        <member name="M:Seven.Memories.DefaultRentableMemoriesIndexer.TryLock(System.Int32,System.Range@)">
+            <summary>
+            try lock indexed range
+            </summary>
+            <param name="length">length of memories</param>
+            <param name="range">locked range</param>
+            <returns>if false, rent operation is failed</returns>
+        </member>
+        <member name="M:Seven.Memories.DefaultRentableMemoriesIndexer.Unlock(System.Range)">
+            <summary>
+            unlock locked range
+            </summary>
+            <param name="range">locked range</param>
+        </member>
+        <member name="T:Seven.Memories.IRentableMemories">
+            <summary>
+            rentable memories
+            </summary>
+        </member>
+        <member name="M:Seven.Memories.IRentableMemories.TryRent(System.Int32,Seven.Memories.RentedMemory@)">
+            <summary>
+            try to rent some memory
+            </summary>
+            <param name="length">the length of memory</param>
+            <param name="rentedMemory">rented memory</param>
+            <returns>if false, rent operation is failed</returns>
+        </member>
+        <member name="M:Seven.Memories.IRentableMemories.Return(Seven.Memories.RentedMemory)">
+            <summary>
+            return rented memory
+            </summary>
+            <param name="rentedMemory">rented memory</param>
+        </member>
         <member name="T:Seven.Memories.MemoryPool">
             <summary>
             memory pool
@@ -37,6 +107,13 @@
             the length of each block
             </summary>
         </member>
+        <member name="M:Seven.Memories.MemoryPool.CreateRentableMemories(System.Int32)">
+            <summary>
+            create rentable memories instance
+            </summary>
+            <param name="blockSize">the length of memories</param>
+            <returns>rentable memories instance</returns>
+        </member>
         <member name="M:Seven.Memories.MemoryPool.TryRent(System.Int32,Seven.Memories.RentedMemory@)">
             <summary>
             try to rent some memory
@@ -55,9 +132,79 @@
             rentable memories
             </summary>
         </member>
+        <member name="M:Seven.Memories.RentableMemories.#ctor(System.Int32)">
+            <summary>
+            initialize a new <see cref="T:Seven.Memories.RentableMemories"/> instance
+            </summary>
+            <param name="length">the length of memories</param>
+        </member>
+        <member name="M:Seven.Memories.RentableMemories.CreateIndexer(System.Int32)">
+            <summary>
+            create rentable memories indexer instance
+            </summary>
+            <param name="length">length</param>
+            <returns>rentable memories indexer instance</returns>
+        </member>
+        <member name="M:Seven.Memories.RentableMemories.TryRent(System.Int32,Seven.Memories.RentedMemory@)">
+            <summary>
+            try to rent some memory
+            </summary>
+            <param name="length">the length of memory</param>
+            <param name="rentedMemory">rented memory</param>
+            <returns>if false, rent operation is failed</returns>
+        </member>
+        <member name="M:Seven.Memories.RentableMemories.Return(Seven.Memories.RentedMemory)">
+            <summary>
+            return rented memory
+            </summary>
+            <param name="rentedMemory">rented memory</param>
+        </member>
+        <member name="T:Seven.Memories.RentableMemoriesIndexer">
+            <summary>
+            rentable memories indexer
+            </summary>
+        </member>
+        <member name="M:Seven.Memories.RentableMemoriesIndexer.#ctor(System.Int32)">
+            <summary>
+            initialize a new <see cref="T:Seven.Memories.RentableMemoriesIndexer"/>
+            </summary>
+            <param name="length">length of rentable memories</param>
+        </member>
+        <member name="P:Seven.Memories.RentableMemoriesIndexer.Length">
+            <summary>
+            length of rentable memories
+            </summary>
+        </member>
+        <member name="M:Seven.Memories.RentableMemoriesIndexer.TryLock(System.Int32,System.Range@)">
+            <summary>
+            try lock indexed range
+            </summary>
+            <param name="length">length of memories</param>
+            <param name="range">locked range</param>
+            <returns>if false, rent operation is failed</returns>
+        </member>
+        <member name="M:Seven.Memories.RentableMemoriesIndexer.Unlock(System.Range)">
+            <summary>
+            unlock locked range
+            </summary>
+            <param name="range">locked range</param>
+        </member>
         <member name="T:Seven.Memories.RentedMemory">
             <summary>
             one memory owns some bytes
+            </summary>
+        </member>
+        <member name="M:Seven.Memories.RentedMemory.#ctor(Seven.Memories.IRentableMemories,System.Range,System.Memory{System.Byte})">
+            <summary>
+            initialize a new <see cref="T:Seven.Memories.RentedMemory"/> instance
+            </summary>
+            <param name="memories">rentable memories</param>
+            <param name="rentedRange">rented range</param>
+            <param name="memory">rented memory</param>
+        </member>
+        <member name="P:Seven.Memories.RentedMemory.RentedRange">
+            <summary>
+            rented range
             </summary>
         </member>
         <member name="P:Seven.Memories.RentedMemory.Memory">

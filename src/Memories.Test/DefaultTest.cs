@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace Seven.Memories
 {
     [TestClass]
-    public sealed class MemoriesTest
+    public sealed class DefaultTest
     {
         [TestMethod]
         public void RentableMemoriesTest()
@@ -14,7 +14,7 @@ namespace Seven.Memories
             const int MEMORIES_LENGTH = 1024;
             const int MAX_RENT_LENGTH = 128;
 
-            var memories = new RentableMemories(MEMORIES_LENGTH);
+            var memories = new DefaultRentableMemories(MEMORIES_LENGTH);
 
             var random = new Random(DateTime.Now.Millisecond);
 
@@ -101,7 +101,7 @@ namespace Seven.Memories
             const int MEMORIES_LENGTH = 1024;
             const int MAX_RENT_LENGTH = 128;
 
-            var pool = new MemoryPool(4, 10, MEMORIES_LENGTH);
+            var pool = new DefaultMemoryPool(4, 10, MEMORIES_LENGTH);
 
             var random = new Random(DateTime.Now.Millisecond);
 
@@ -159,7 +159,7 @@ namespace Seven.Memories
             const int MEMORIES_LENGTH = 1024;
             const int MAX_RENT_LENGTH = 128;
 
-            var pool = new MemoryPool(4, 10, MEMORIES_LENGTH);
+            var pool = new DefaultMemoryPool(4, 10, MEMORIES_LENGTH);
 
             var random = new Random(DateTime.Now.Millisecond);
 

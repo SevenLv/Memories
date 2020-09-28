@@ -5,7 +5,7 @@ namespace Seven.Memories.Benchmark
 {
     [SimpleJob(RuntimeMoniker.CoreRt31)]
     [MarkdownExporterAttribute.GitHub]
-    public class InitializationTester
+    public class DefaultInitializationTester
     {
         #region properties
         [Params(10, 100, 1000, 10000, 100000)]
@@ -19,7 +19,7 @@ namespace Seven.Memories.Benchmark
         [Benchmark]
         public void InitializeAndDispose()
         {
-            using var pool = new MemoryPool(Count, Count, Size);
+            using var pool = new DefaultMemoryPool(Count, Count, Size);
         }
         #endregion methods
     }

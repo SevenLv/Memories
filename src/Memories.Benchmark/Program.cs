@@ -8,8 +8,8 @@ namespace Memories.Benchmark
     {
         static void Main(string[] args)
         {
-            //BenchmarkRunner.Run<InitializationTester>();
-            BenchmarkRunner.Run<RentTester>();
+            BenchmarkRunner.Run<DefaultInitializationTester>();
+            //BenchmarkRunner.Run<DefaultRentTester>();
             Console.ReadLine();
         }
     }

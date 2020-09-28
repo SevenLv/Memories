@@ -1,25 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 
 namespace Seven.Memories
 {
     /// <summary>
     /// rentable memories
     /// </summary>
-    internal sealed class RentableMemories
+    public abstract class RentableMemories : IRentableMemories
     {
         #region fields
         private readonly Memory<byte> bytes;
-        private readonly Range fullRange;
-
-        private readonly object rentedRangesLocker = new object();
-        private readonly LinkedList<Range> rentedRanges = new LinkedList<Range>();
+        private readonly RentableMemoriesIndexer indexer;
         #endregion fields
 
         #region constructors
-        internal RentableMemories(int length)
+        /// <summary>
+        /// initialize a new <see cref="RentableMemories"/> instance
+        /// </summary>
+        /// <param name="length">the length of memories</param>
+        protected RentableMemories(int length)
         {
             if (length <= 0)
             {
@@ -27,98 +25,48 @@ namespace Seven.Memories
             }
 
             bytes = new byte[length];
-            fullRange = new Range(0, length);
+            indexer = CreateIndexer(length);
         }
         #endregion constructors
 
         #region methods
-        internal bool TryRent(int length, out RentedMemory rentedMemory)
+        /// <summary>
+        /// create rentable memories indexer instance
+        /// </summary>
+        /// <param name="length">length</param>
+        /// <returns>rentable memories indexer instance</returns>
+        protected abstract RentableMemoriesIndexer CreateIndexer(int length);
+
+        /// <summary>
+        /// try to rent some memory
+        /// </summary>
+        /// <param name="length">the length of memory</param>
+        /// <param name="rentedMemory">rented memory</param>
+        /// <returns>if false, rent operation is failed</returns>
+        public bool TryRent(int length, out RentedMemory rentedMemory)
         {
-            lock (rentedRangesLocker)
+            if (indexer.TryLock(length, out var range))
             {
-                if (rentedRanges.Count <= 0)
-                {
-                    var rentedRange = Rent(0, length, out rentedMemory);
-                    rentedRanges.AddLast(rentedRange);
-                    return true;
-                }
-
-                //int lastOffset = 0;
-                var currentNode = rentedRanges.First;
-
-                while (currentNode != null)
-                {
-                    var currentStart = currentNode.Value.Start.Value;
-                    var currentEnd = currentNode.Value.End.Value;
-
-                    var next = currentNode.Next;
-                    if (next == null)
-                    {
-                        // last rented range
-                        if (fullRange.End.Value - currentEnd - 1 >= length)
-                        {
-                            var rentedRange = Rent(currentEnd + 1, currentEnd + length + 1, out rentedMemory);
-                            rentedRanges.AddLast(rentedRange);
-                            return true;
-                        }
-                    }
-
-                    var previous = currentNode.Previous;
-                    if (previous == null)
-                    {
-                        // first rented range
-                        if (currentStart >= length)
-                        {
-                            var rentedRange = Rent(0, length, out rentedMemory);
-                            rentedRanges.AddBefore(currentNode, rentedRange);
-                            return true;
-                        }
-                    }
-                    else
-                    {
-                        var previousEnd = previous.Value.End.Value;
-                        var freeLength = currentStart - previousEnd - 1;
-                        if (freeLength >= length)
-                        {
-                            var rentedRange = Rent(previousEnd + 1, previousEnd + length + 1, out rentedMemory);
-                            rentedRanges.AddBefore(currentNode, rentedRange);
-                            return true;
-                        }
-                    }
-
-                    currentNode = currentNode.Next;
-                }
+                rentedMemory = new RentedMemory(this, range, bytes[range]);
+                return true;
             }
 
             rentedMemory = default;
             return false;
         }
 
-        private Range Rent(int from, int end, out RentedMemory rentedMemory)
+        /// <summary>
+        /// return rented memory
+        /// </summary>
+        /// <param name="rentedMemory">rented memory</param>
+        public void Return(RentedMemory rentedMemory)
         {
-            var rentedRange = new Range(from, end);
-
-            rentedMemory = new RentedMemory(this, rentedRange, bytes[rentedRange]);
-
-            return rentedRange;
+            indexer.Unlock(rentedMemory.RentedRange);
+            rentedMemory.Memory.Span.Fill(0);
         }
 
-        internal void Return(RentedMemory memory)
-        {
-            lock (rentedRangesLocker)
-            {
-                if (!rentedRanges.Contains(memory.RentedRange))
-                {
-                    Trace.TraceWarning($"invalid memory range ({memory.RentedRange}) to return.{Environment.NewLine}rented ranges: {string.Join(", ", rentedRanges.Select(e => e.ToString()))}");
-                    return;
-                }
-
-                memory.Memory.Span.Fill(0);
-                rentedRanges.Remove(memory.RentedRange);
-            }
-        }
-
-        internal ReadOnlyMemory<byte> Get(Range range) => bytes[range];
+        internal ReadOnlyMemory<byte> Get(Range range) =>
+            bytes[range];
         #endregion methods
     }
 }
