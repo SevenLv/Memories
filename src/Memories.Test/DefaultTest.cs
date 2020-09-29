@@ -1,4 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿//--------------------------------------------------------------------------------
+// DefaultTest.cs is part of Seven.Memories
+// Created by Seven Lv, 2020-9-23
+// Licensed to the Seven.Memories under one or more agreements.
+// The Seven.Memories licenses this file to you under the MIT license.
+//--------------------------------------------------------------------------------
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

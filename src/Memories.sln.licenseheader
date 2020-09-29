@@ -1,0 +1,8 @@
+﻿extensions: designer.cs generated.cs
+extensions: .cs .cpp .h
+//--------------------------------------------------------------------------------
+// %FileName% is part of Seven.Memories
+// Created by Seven Lv, %CreationYear%-%CreationMonth%-%CreationDay%
+// Licensed to the Seven.Memories under one or more agreements.
+// The Seven.Memories licenses this file to you under the MIT license.
+//--------------------------------------------------------------------------------
