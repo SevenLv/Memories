@@ -1,6 +1,6 @@
 ﻿//--------------------------------------------------------------------------------
-// DefaultTest.cs is part of Seven.Memories
-// Created by Seven Lv, 2020-9-23
+// Tester.cs is part of Seven.Memories
+// Created by Seven Lv, 2020-9-29
 // Licensed to the Seven.Memories under one or more agreements.
 // The Seven.Memories licenses this file to you under the MIT license.
 //--------------------------------------------------------------------------------
@@ -10,18 +10,20 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Seven.Memories
+namespace Seven.Memories.Test
 {
-    [TestClass]
-    public sealed class DefaultTest
+    public abstract class Tester
     {
+        private protected abstract RentableMemories CreateRentableMemories(int length);
+        private protected abstract MemoryPool CreateMemoryPool(int count, int maxCount, int blockSize);
+
         [TestMethod]
         public void RentableMemoriesTest()
         {
             const int MEMORIES_LENGTH = 1024;
             const int MAX_RENT_LENGTH = 128;
 
-            var memories = new DefaultRentableMemories(MEMORIES_LENGTH);
+            var memories = CreateRentableMemories(MEMORIES_LENGTH);
 
             var random = new Random(DateTime.Now.Millisecond);
 
@@ -108,7 +110,7 @@ namespace Seven.Memories
             const int MEMORIES_LENGTH = 1024;
             const int MAX_RENT_LENGTH = 128;
 
-            var pool = new DefaultMemoryPool(4, 10, MEMORIES_LENGTH);
+            var pool = CreateMemoryPool(4, 10, MEMORIES_LENGTH);
 
             var random = new Random(DateTime.Now.Millisecond);
 
@@ -166,7 +168,7 @@ namespace Seven.Memories
             const int MEMORIES_LENGTH = 1024;
             const int MAX_RENT_LENGTH = 128;
 
-            var pool = new DefaultMemoryPool(4, 10, MEMORIES_LENGTH);
+            var pool = CreateMemoryPool(4, 10, MEMORIES_LENGTH);
 
             var random = new Random(DateTime.Now.Millisecond);
 
