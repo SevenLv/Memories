@@ -16,7 +16,7 @@ namespace Memories.Benchmark
         static void Main(string[] args)
         {
             BenchmarkRunner.Run<DefaultInitializationTester>();
-            //BenchmarkRunner.Run<DefaultRentTester>();
+            BenchmarkRunner.Run<DefaultRentTester>();
             Console.ReadLine();
         }
     }

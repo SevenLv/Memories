@@ -30,7 +30,7 @@ namespace Seven.Memories
         /// <param name="blockSize">the length of memories</param>
         /// <returns>rentable memories instance</returns>
         protected sealed override RentableMemories CreateRentableMemories(int blockSize) =>
-            new DefaultRentableMemories(blockSize);
+            new RentableMemories(blockSize, new DefaultRentableMemoriesIndexer(blockSize));
         #endregion methods
     }
 }

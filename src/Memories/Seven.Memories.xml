@@ -24,18 +24,6 @@
             <param name="blockSize">the length of memories</param>
             <returns>rentable memories instance</returns>
         </member>
-        <member name="T:Seven.Memories.DefaultRentableMemories">
-            <summary>
-            rentalbe memories with default indexer
-            </summary>
-        </member>
-        <member name="M:Seven.Memories.DefaultRentableMemories.CreateIndexer(System.Int32)">
-            <summary>
-            create rentable memories indexer instance
-            </summary>
-            <param name="length">the length of memories</param>
-            <returns>rentable memories indexer instance</returns>
-        </member>
         <member name="T:Seven.Memories.DefaultRentableMemoriesIndexer">
             <summary>
             default rentable memories indexer
@@ -132,18 +120,12 @@
             rentable memories
             </summary>
         </member>
-        <member name="M:Seven.Memories.RentableMemories.#ctor(System.Int32)">
+        <member name="M:Seven.Memories.RentableMemories.#ctor(System.Int32,Seven.Memories.RentableMemoriesIndexer)">
             <summary>
             initialize a new <see cref="T:Seven.Memories.RentableMemories"/> instance
             </summary>
             <param name="length">the length of memories</param>
-        </member>
-        <member name="M:Seven.Memories.RentableMemories.CreateIndexer(System.Int32)">
-            <summary>
-            create rentable memories indexer instance
-            </summary>
-            <param name="length">length</param>
-            <returns>rentable memories indexer instance</returns>
+            <param name="indexer">rentable memories indexer instance</param>
         </member>
         <member name="M:Seven.Memories.RentableMemories.TryRent(System.Int32,Seven.Memories.RentedMemory@)">
             <summary>

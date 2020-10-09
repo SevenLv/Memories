@@ -12,7 +12,7 @@ namespace Seven.Memories
     /// <summary>
     /// rentable memories
     /// </summary>
-    public abstract class RentableMemories : IRentableMemories
+    public sealed class RentableMemories : IRentableMemories
     {
         #region fields
         private readonly Memory<byte> bytes;
@@ -24,7 +24,8 @@ namespace Seven.Memories
         /// initialize a new <see cref="RentableMemories"/> instance
         /// </summary>
         /// <param name="length">the length of memories</param>
-        protected RentableMemories(int length)
+        /// <param name="indexer">rentable memories indexer instance</param>
+        internal RentableMemories(int length, RentableMemoriesIndexer indexer)
         {
             if (length <= 0)
             {
@@ -32,18 +33,11 @@ namespace Seven.Memories
             }
 
             bytes = new byte[length];
-            indexer = CreateIndexer(length);
+            this.indexer = indexer;
         }
         #endregion constructors
 
         #region methods
-        /// <summary>
-        /// create rentable memories indexer instance
-        /// </summary>
-        /// <param name="length">length</param>
-        /// <returns>rentable memories indexer instance</returns>
-        protected abstract RentableMemoriesIndexer CreateIndexer(int length);
-
         /// <summary>
         /// try to rent some memory
         /// </summary>

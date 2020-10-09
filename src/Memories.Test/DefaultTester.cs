@@ -17,7 +17,7 @@ namespace Seven.Memories.Test
             new DefaultMemoryPool(count, maxCount, blockSize);
 
         private protected sealed override RentableMemories CreateRentableMemories(int length) =>
-            new DefaultRentableMemories(length);
+            new RentableMemories(length, new DefaultRentableMemoriesIndexer(length));
         #endregion methods
     }
 }

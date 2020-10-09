@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Seven.Memories</RootNamespace>
     <AssemblyName>Seven.Memories</AssemblyName>
-    <Version>0.2.0.2-alpha</Version>
+    <Version>0.3.0.2-alpha</Version>
     <Authors>Seven Lv</Authors>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/SevenLv/Memories/</PackageProjectUrl>
